@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    Tarea #5 Lenguajes Modernos de Programación
+    <br>
+  </head>
+    <body>
+      <script>
+        document.open();
+        document.write('Inició de sesión de Cookies <br>');
+
+        function setCookie(cname, cvalue, exdays) {
+          var d = new Date();
+          d.setTime(d.getTime() + (exdays*24*60*60*1000));
+          var expires = "Vence el: " +d.toUTCString();
+          document.cookie = cname + "=" + cvalue + "; " + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+          var name = cname + "=";
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(';');
+          for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+             c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+            }
+          }
+          return "";
+        }
+
+        nombre=prompt("Escriba su nombre: ", " ");
+        apell=prompt("Escriba sus apellidos: "," ");
+        edad=prompt("Escriba su edad: "," ");
+        prof=prompt("Escriba su profesión: "," ");
+
+        setCookie("Nombre", nombre, 1);
+        setCookie("Apellidos", apell, 1);
+        setCookie("Edad", edad, 1);
+        setCookie("Profesión", prof, 1);
+
+        document.write("COOKIE: "+document.cookie+"<br>");
+        document.write("Obtuve una cookie!<br>");
+        a=getCookie("Profesión");
+        document.write(a);
+        document.close();
+      </script>
+    </body>
+</html>
